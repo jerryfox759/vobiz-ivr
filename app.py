@@ -4,10 +4,10 @@ app = Flask(__name__)
 
 BASE_URL = "https://vobiz-ivr.onrender.com"
 
-# YOUR VOBIZ NUMBER
+# Your Vobiz Number
 CALLER_ID = "918065480651"
 
-# YOUR MOBILE NUMBER
+# Your Mobile Number
 FORWARD_NUMBER = "917595989813"
 
 
@@ -16,9 +16,9 @@ def home():
     return "Vobiz IVR Running"
 
 
-# =========================
-# MAIN ANSWER ROUTE
-# =========================
+# =====================================
+# MAIN IVR
+# =====================================
 @app.route("/answer", methods=["GET", "POST"])
 def answer():
 
@@ -51,16 +51,17 @@ def answer():
     )
 
 
-# =========================
+# =====================================
 # LANGUAGE SELECTION
-# =========================
+# =====================================
 @app.route("/select-language", methods=["GET", "POST"])
 def select_language():
 
-    print("Language Selection Data:", request.form)
+    print("Language Selection:", request.form)
 
     digit = request.form.get("Digits")
 
+    # HINDI
     if digit == "1":
 
         xml = f"""<?xml version="1.0" encoding="UTF-8"?>
@@ -82,6 +83,7 @@ def select_language():
 </Response>
 """
 
+    # ENGLISH
     elif digit == "2":
 
         xml = f"""<?xml version="1.0" encoding="UTF-8"?>
@@ -125,16 +127,17 @@ def select_language():
     )
 
 
-# =========================
+# =====================================
 # DEPARTMENT SELECTION
-# =========================
+# =====================================
 @app.route("/select-department", methods=["GET", "POST"])
 def select_department():
 
-    print("Department Selection Data:", request.form)
+    print("Department Selection:", request.form)
 
     digit = request.form.get("Digits")
 
+    # SALES
     if digit == "1":
 
         xml = f"""<?xml version="1.0" encoding="UTF-8"?>
@@ -151,6 +154,7 @@ def select_department():
 </Response>
 """
 
+    # SUPPORT
     elif digit == "2":
 
         xml = f"""<?xml version="1.0" encoding="UTF-8"?>

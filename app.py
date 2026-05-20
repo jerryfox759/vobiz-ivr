@@ -25,6 +25,10 @@ def answer():
     xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
 
+<Speak>
+    Welcome to our company.
+</Speak>
+
 <Gather
     action="{BASE_URL}/select-language"
     method="POST"
@@ -74,8 +78,8 @@ def select_language():
     executionTimeout="10">
 
     <Speak>
-        For Sales, Press 1.
-        For Support, Press 2.
+        Sales ke liye 1 dabayein.
+        Support ke liye 2 dabayein.
     </Speak>
 
 </Gather>
@@ -96,8 +100,8 @@ def select_language():
     executionTimeout="10">
 
     <Speak>
-        For Sales, press 1.
-        For Support, press 2.
+        Press 1 for Sales.
+        Press 2 for Support.
     </Speak>
 
 </Gather>
@@ -144,7 +148,7 @@ def select_department():
 <Response>
 
 <Speak>
-    Connecting to sales.
+    Connecting your call to Sales.
 </Speak>
 
 <Dial callerId="{CALLER_ID}">
@@ -161,7 +165,7 @@ def select_department():
 <Response>
 
 <Speak>
-    Connecting to support.
+    Connecting your call to Support.
 </Speak>
 
 <Dial callerId="{CALLER_ID}">

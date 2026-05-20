@@ -78,8 +78,8 @@ def select_language():
     executionTimeout="10">
 
     <Speak>
-        Sales ke liye press 1.
-        Support ke liye press 2.
+        Press 1 for Hindi sales.
+        Press 2 for Hindi support.
     </Speak>
 
 </Gather>

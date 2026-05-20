@@ -32,7 +32,7 @@ def answer():
     executionTimeout="10">
 
     <Speak>
-        Hindi ke liye 1 dabayein.
+        For Hindi, press 1.
         For English, press 2.
     </Speak>
 

@@ -4,12 +4,21 @@ app = Flask(__name__)
 
 BASE_URL = "https://vobiz-ivr.onrender.com"
 
+# YOUR VOBIZ NUMBER
+CALLER_ID = "918065480651"
+
+# YOUR MOBILE NUMBER
+FORWARD_NUMBER = "917595989813"
+
 
 @app.route("/")
 def home():
-    return "IVR Running"
+    return "Vobiz IVR Running"
 
 
+# =========================
+# MAIN ANSWER ROUTE
+# =========================
 @app.route("/answer", methods=["GET", "POST"])
 def answer():
 
@@ -42,8 +51,13 @@ def answer():
     )
 
 
+# =========================
+# LANGUAGE SELECTION
+# =========================
 @app.route("/select-language", methods=["GET", "POST"])
 def select_language():
+
+    print("Language Selection Data:", request.form)
 
     digit = request.form.get("Digits")
 
@@ -53,7 +67,7 @@ def select_language():
 <Response>
 
 <Gather
-    action="{BASE_URL}/select-department?lang=hi"
+    action="{BASE_URL}/select-department"
     method="POST"
     inputType="dtmf"
     executionTimeout="10">
@@ -74,7 +88,7 @@ def select_language():
 <Response>
 
 <Gather
-    action="{BASE_URL}/select-department?lang=en"
+    action="{BASE_URL}/select-department"
     method="POST"
     inputType="dtmf"
     executionTimeout="10">
@@ -111,18 +125,27 @@ def select_language():
     )
 
 
+# =========================
+# DEPARTMENT SELECTION
+# =========================
 @app.route("/select-department", methods=["GET", "POST"])
 def select_department():
+
+    print("Department Selection Data:", request.form)
 
     digit = request.form.get("Digits")
 
     if digit == "1":
 
-        xml = """<?xml version="1.0" encoding="UTF-8"?>
+        xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
 
-<Dial>
-    <Number>+917595989813</Number>
+<Speak>
+    Connecting to sales.
+</Speak>
+
+<Dial callerId="{CALLER_ID}">
+    <Number>{FORWARD_NUMBER}</Number>
 </Dial>
 
 </Response>
@@ -130,11 +153,15 @@ def select_department():
 
     elif digit == "2":
 
-        xml = """<?xml version="1.0" encoding="UTF-8"?>
+        xml = f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
 
-<Dial>
-    <Number>+917595989813</Number>
+<Speak>
+    Connecting to support.
+</Speak>
+
+<Dial callerId="{CALLER_ID}">
+    <Number>{FORWARD_NUMBER}</Number>
 </Dial>
 
 </Response>

@@ -78,8 +78,8 @@ def select_language():
     executionTimeout="10">
 
     <Speak>
-        Sales ke liye 1 dabayein.
-        Support ke liye 2 dabayein.
+        Sales ke liye 1 dabaye.
+        Support ke liye 2 dabaye.
     </Speak>
 
 </Gather>
